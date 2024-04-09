@@ -75,6 +75,7 @@ def get_model_params(datasets_path, dataset_name, model_type=None):
   obj_ids = {
     'lm': list(range(1, 16)),
     'lmo': [1, 5, 6, 8, 9, 10, 11, 12],
+    'camozzi': [1],
     'tless': list(range(1, 31)),
     'tudl': list(range(1, 4)),
     'tyol': list(range(1, 22)),
@@ -93,6 +94,7 @@ def get_model_params(datasets_path, dataset_name, model_type=None):
   symmetric_obj_ids = {
     'lm': [3, 7, 10, 11],
     'lmo': [10, 11],
+    'camozzi': [1],
     'tless': list(range(1, 31)),
     'tudl': [],
     'tyol': [3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 15, 16, 17, 18, 19, 21],
@@ -161,6 +163,8 @@ def get_split_params(datasets_path, dataset_name, split, split_type=None):
     'elev_range': None,
   }
 
+  print("dataset_name: ", dataset_name)
+
   rgb_ext = '.png'
   gray_ext = '.png'
   depth_ext = '.png'
@@ -193,6 +197,11 @@ def get_split_params(datasets_path, dataset_name, split, split_type=None):
       p['depth_range'] = (346.31, 1499.84)
       p['azimuth_range'] = (0, 2 * math.pi)
       p['elev_range'] = (0, 0.5 * math.pi)
+
+  # Camozzi.
+  elif dataset_name == 'camozzi':
+    p['scene_ids'] = {'train_pbr': [0], 'test': [0]}[split]
+    p['im_size'] = (640, 480)
 
   # T-LESS.
   elif dataset_name == 'tless':

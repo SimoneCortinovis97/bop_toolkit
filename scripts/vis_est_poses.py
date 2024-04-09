@@ -82,9 +82,13 @@ for result_fname in p['result_filenames']:
 
   # Parse info about the method and the dataset from the filename.
   result_name = os.path.splitext(os.path.basename(result_fname))[0]
+  print("result_name: ", result_name)
   result_info = result_name.split('_')
+  print("result_info: ", result_info)
   method = result_info[0]
+  print("method: ", method)
   dataset_info = result_info[1].split('-')
+  print("dataset_info: ", dataset_info)
   dataset = dataset_info[0]
   split = dataset_info[1]
   split_type = dataset_info[2] if len(dataset_info) > 2 else None
